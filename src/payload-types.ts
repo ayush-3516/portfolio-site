@@ -68,6 +68,9 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    projects: Project;
+    'blog-posts': BlogPost;
+    tags: Tag;
     media: Media;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,6 +80,9 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'blog-posts': BlogPostsSelect<false> | BlogPostsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -87,8 +93,20 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'hero-content': HeroContent;
+    'site-settings': SiteSetting;
+    'stack-section': StackSection;
+    'metrics-band': MetricsBand;
+    timeline: Timeline;
+  };
+  globalsSelect: {
+    'hero-content': HeroContentSelect<false> | HeroContentSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'stack-section': StackSectionSelect<false> | StackSectionSelect<true>;
+    'metrics-band': MetricsBandSelect<false> | MetricsBandSelect<true>;
+    timeline: TimelineSelect<false> | TimelineSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -144,6 +162,115 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  title: string;
+  /**
+   * Auto-fill from title. e.g. "meraki"
+   */
+  slug: string;
+  domain: 'ai' | 'backend' | 'web3' | 'fullstack';
+  /**
+   * e.g. FLAGSHIP, RAG, AGENTS
+   */
+  tag?: string | null;
+  /**
+   * e.g. 50K+ leads
+   */
+  metric?: string | null;
+  excerpt: string;
+  /**
+   * e.g. Python · Flask · MongoDB
+   */
+  stack?: string | null;
+  status?: ('published' | 'draft' | 'scheduled') | null;
+  scheduledAt?: string | null;
+  /**
+   * Show on Home page
+   */
+  featured?: boolean | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Lower = first
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-posts".
+ */
+export interface BlogPost {
+  id: string;
+  title: string;
+  /**
+   * e.g. "rag-across-40-languages"
+   */
+  slug: string;
+  tag?: (string | null) | Tag;
+  /**
+   * e.g. "8 min"
+   */
+  readTime?: string | null;
+  excerpt: string;
+  publishedAt?: string | null;
+  status?: ('published' | 'draft' | 'scheduled') | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  relatedPosts?: (string | BlogPost)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: string;
+  name: string;
+  /**
+   * Lowercase, hyphenated. e.g. "ai-llm"
+   */
+  slug: string;
+  /**
+   * Hex color e.g. #8b5cf6
+   */
+  color?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
@@ -188,6 +315,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'blog-posts';
+        value: string | BlogPost;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: string | Tag;
       } | null)
     | ({
         relationTo: 'media';
@@ -259,6 +398,54 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  domain?: T;
+  tag?: T;
+  metric?: T;
+  excerpt?: T;
+  stack?: T;
+  status?: T;
+  scheduledAt?: T;
+  featured?: T;
+  body?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-posts_select".
+ */
+export interface BlogPostsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  tag?: T;
+  readTime?: T;
+  excerpt?: T;
+  publishedAt?: T;
+  status?: T;
+  body?: T;
+  relatedPosts?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  color?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -314,6 +501,180 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-content".
+ */
+export interface HeroContent {
+  id: string;
+  headline: string;
+  subheadline: string;
+  locationLine: string;
+  statusBadgeText: string;
+  terminalCode: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  email: string;
+  githubUrl: string;
+  resumeUrl?: string | null;
+  metaTitle: string;
+  metaDescription: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack-section".
+ */
+export interface StackSection {
+  id: string;
+  groups?:
+    | {
+        domain: string;
+        items?:
+          | {
+              item: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "metrics-band".
+ */
+export interface MetricsBand {
+  id: string;
+  /**
+   * e.g. 50000
+   */
+  m1Value: string;
+  /**
+   * e.g. leads co-managed
+   */
+  m1Label: string;
+  m2Value: string;
+  m2Label: string;
+  m3Value: string;
+  m3Label: string;
+  m4Value: string;
+  m4Label: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "timeline".
+ */
+export interface Timeline {
+  id: string;
+  entries?:
+    | {
+        time: string;
+        role: string;
+        org: string;
+        place: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-content_select".
+ */
+export interface HeroContentSelect<T extends boolean = true> {
+  headline?: T;
+  subheadline?: T;
+  locationLine?: T;
+  statusBadgeText?: T;
+  terminalCode?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  email?: T;
+  githubUrl?: T;
+  resumeUrl?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack-section_select".
+ */
+export interface StackSectionSelect<T extends boolean = true> {
+  groups?:
+    | T
+    | {
+        domain?: T;
+        items?:
+          | T
+          | {
+              item?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "metrics-band_select".
+ */
+export interface MetricsBandSelect<T extends boolean = true> {
+  m1Value?: T;
+  m1Label?: T;
+  m2Value?: T;
+  m2Label?: T;
+  m3Value?: T;
+  m3Label?: T;
+  m4Value?: T;
+  m4Label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "timeline_select".
+ */
+export interface TimelineSelect<T extends boolean = true> {
+  entries?:
+    | T
+    | {
+        time?: T;
+        role?: T;
+        org?: T;
+        place?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
