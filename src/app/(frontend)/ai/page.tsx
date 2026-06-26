@@ -4,7 +4,7 @@ import { getCachedPayload } from '@/lib/payload'
 import { ProjectCard } from '@/components/ProjectCard'
 import { DomainAccent } from '@/components/DomainAccent'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'AI & LLM — Ayush Chaudhari',

@@ -5,7 +5,7 @@ import { AnimatedCounter } from '@/components/AnimatedCounter'
 import { Typewriter } from '@/components/Typewriter'
 import { ProjectCard } from '@/components/ProjectCard'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const payload = await getCachedPayload()

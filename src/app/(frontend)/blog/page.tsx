@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getCachedPayload } from '@/lib/payload'
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Blog — Ayush Chaudhari',
