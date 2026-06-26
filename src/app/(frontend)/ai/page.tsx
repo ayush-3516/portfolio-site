@@ -1,0 +1,92 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import { getCachedPayload } from '@/lib/payload'
+import { ProjectCard } from '@/components/ProjectCard'
+import { DomainAccent } from '@/components/DomainAccent'
+
+export const revalidate = 60
+
+export const metadata: Metadata = {
+  title: 'AI & LLM — Ayush Chaudhari',
+  description: 'Multi-provider LLM orchestration, RAG, multi-agent systems, and prompt caching.',
+}
+
+const proof = [
+  { big: '3 providers', label: 'Anthropic → Gemini → OpenAI fallback chain' },
+  { big: '~95%', label: 'cost cut via 24h prompt caching' },
+  { big: '40+', label: 'languages in production RAG' },
+  { big: '3 agents', label: 'orchestrated with code-enforced rules' },
+]
+
+export default async function AIPage() {
+  const payload = await getCachedPayload()
+  const projects = await payload
+    .find({ collection: 'projects', where: { and: [{ domain: { equals: 'ai' } }, { status: { equals: 'published' } }] }, sort: 'order' })
+    .then((r) => r.docs)
+    .catch(() => [])
+
+  const recentPosts = await payload
+    .find({ collection: 'blog-posts', where: { status: { equals: 'published' } }, sort: '-publishedAt', limit: 3 })
+    .then((r) => r.docs)
+    .catch(() => [])
+
+  return (
+    <div>
+      <DomainAccent domain="ai" />
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '90px 36px 56px', textAlign: 'center' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 99, border: '1px solid rgba(139,92,246,.35)', background: 'rgba(139,92,246,.1)', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#8b5cf6', marginBottom: 26 }}>
+          /ai · APPLIED LLM SYSTEMS
+        </div>
+        <h1 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 56, lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--ink)', maxWidth: 880, margin: '0 auto 22px' }}>
+          I orchestrate LLMs into products that ship — and don't go bankrupt.
+        </h1>
+        <p style={{ fontSize: 18, lineHeight: 1.6, color: 'var(--muted)', maxWidth: 640, margin: '0 auto 32px' }}>
+          Multi-provider fallback chains, RAG over 40+ languages, multi-agent systems, and prompt caching that cut generation cost by ~95%.
+        </p>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="mailto:ayushchaudhari3516@gmail.com" style={{ padding: '13px 24px', borderRadius: 11, background: '#8b5cf6', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif", textDecoration: 'none', boxShadow: '0 10px 30px -10px #8b5cf6' }}>See AI work</a>
+          <a href="mailto:ayushchaudhari3516@gmail.com" style={{ padding: '13px 24px', borderRadius: 11, background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--ink)', fontSize: 14, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif", textDecoration: 'none' }}>Contact</a>
+        </div>
+      </section>
+
+      {/* Proof band */}
+      <section style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '36px 36px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 32 }}>
+          {proof.map((p) => (
+            <div key={p.big}>
+              <div style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 32, color: 'var(--accent)', letterSpacing: '-0.02em' }}>{p.big}</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>{p.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '60px 36px 40px' }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 10 }}>AI PROJECTS</div>
+        <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 32, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 32 }}>LLM systems I've shipped</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+          {projects.map((p) => <ProjectCard key={p.id} project={p} />)}
+        </div>
+      </section>
+
+      {/* Recent posts */}
+      {recentPosts.length > 0 && (
+        <section style={{ maxWidth: 1180, margin: '0 auto', padding: '20px 36px 60px' }}>
+          <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 24, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>Recent writing</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {recentPosts.map((post) => (
+              <Link key={post.id} href={`/blog/${post.slug}`} style={{ padding: '18px 24px', borderRadius: 14, background: 'var(--surface)', border: '1px solid var(--border)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 16 }}>
+                <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--accent)', padding: '4px 9px', borderRadius: 7, background: 'var(--accent-soft)' }}>
+                  {typeof post.tag === 'object' && post.tag !== null ? (post.tag as any).name : post.tag}
+                </span>
+                <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--ink)' }}>{post.title}</span>
+                <span style={{ marginLeft: 'auto', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--faint)' }}>{post.readTime}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  )
+}
