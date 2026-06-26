@@ -163,9 +163,24 @@ Never leave the repo with TypeScript errors. Never leave broken imports.
 
 ## Payload MCP
 
-If Payload MCP is available (configured via `@payloadcms/mcp` plugin):
+The `@payloadcms/plugin-mcp` plugin is installed and registered in `payload.config.ts`. The MCP server is configured in `.claude/settings.json` and connects to `http://localhost:3000/api/mcp`.
 
-- Use Payload MCP tools to create and update content.
-- Never edit the MongoDB database directly.
-- Use collections, not local JSON files, as the source of truth.
-- See `docs/CONTENT_WORKFLOW.md` for the full content creation workflow.
+**The dev server must be running** (`pnpm dev`) for MCP tools to work.
+
+### Generating your API key (one-time setup)
+
+1. Start the dev server: `pnpm dev`
+2. Go to `http://localhost:3000/admin`
+3. In the sidebar, find **MCP → API Keys**
+4. Create a new key with access to: Projects, Blog Posts, Tags, Media
+5. Copy the generated key
+6. Replace `REPLACE_WITH_API_KEY_FROM_ADMIN` in `.claude/settings.json` with the real key
+7. Restart Claude Code so it picks up the new MCP server
+
+### Using MCP tools
+
+Once connected, use Payload MCP tools to create and update content — never edit the database directly.
+
+Available collections via MCP: `projects`, `blog-posts`, `tags`, `media`
+
+See `docs/CONTENT_WORKFLOW.md` for the full content creation workflow.
