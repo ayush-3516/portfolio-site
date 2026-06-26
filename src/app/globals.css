@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f7f7f4;
+  --nav: rgba(247, 247, 244, 0.78);
+  --surface: #ffffff;
+  --surface-2: #f0f1ed;
+  --border: rgba(0, 0, 0, 0.09);
+  --ink: #0e0f14;
+  --muted: #525864;
+  --faint: #9398a3;
+  --accent: #4f46e5;
+  --accent-soft: rgba(79, 70, 229, 0.09);
+}
+
+.dark {
+  --bg: #0a0b0f;
+  --nav: rgba(10, 11, 15, 0.72);
+  --surface: #13151d;
+  --surface-2: #1b1e29;
+  --border: rgba(255, 255, 255, 0.08);
+  --ink: #f4f5f8;
+  --muted: #9aa0b0;
+  --faint: #666c7c;
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.12);
+}
+
+[data-domain="ai"] {
+  --accent: #8b5cf6;
+  --accent-soft: rgba(139, 92, 246, 0.12);
+}
+
+[data-domain="backend"] {
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.13);
+}
+
+.dark [data-domain="backend"] {
+  --accent: #38bdf8;
+}
+
+:root [data-domain="backend"] {
+  --accent: #0284c7;
+  --accent-soft: rgba(2, 132, 199, 0.1);
+}
+
+[data-domain="web3"] {
+  --accent: #f5b942;
+  --accent-soft: rgba(245, 185, 66, 0.13);
+}
+
+.dark [data-domain="web3"] {
+  --accent: #f5b942;
+}
+
+:root [data-domain="web3"] {
+  --accent: #c2820a;
+  --accent-soft: rgba(194, 130, 10, 0.1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  transition: background 0.3s;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 8px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0%, 49%  { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
