@@ -76,8 +76,8 @@ export default async function HomePage() {
             { href: '/backend', accent: '#38bdf8', path: '/backend', label: 'Backend →', sub: 'APIs · systems · scale' },
             { href: '/web3', accent: '#f5b942', path: '/web3', label: 'Blockchain →', sub: 'Solidity · contracts · NFTs' },
           ].map((card) => (
-            <Link key={card.href} href={card.href} style={{ flex: 1, minWidth: 180, padding: '16px 18px', borderRadius: 13, border: '1px solid var(--border)', background: 'var(--surface-2)', textDecoration: 'none', display: 'block' }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: card.accent, marginBottom: 5 }}>{card.path}</div>
+            <Link key={card.href} href={card.href} style={{ flex: 1, minWidth: 180, padding: '16px 18px', borderRadius: 13, border: '1px solid var(--border)', background: 'var(--surface-2)', textDecoration: 'none', display: 'block', '--card-accent': card.accent } as React.CSSProperties}>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--card-accent)', marginBottom: 5 }}>{card.path}</div>
               <div style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 17, color: 'var(--ink)' }}>{card.label}</div>
               <div style={{ fontSize: 12.5, color: 'var(--muted)', marginTop: 3 }}>{card.sub}</div>
             </Link>

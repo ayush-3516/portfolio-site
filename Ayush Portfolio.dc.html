@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:rgba(99,102,241,.3)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:rgba(128,128,128,.3);border-radius:8px}
+</style>
+</helmet>
+<template id="__bundler_thumbnail" data-bg-color="#0a0b0f">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0b0f"/>
+    <rect x="450" y="300" width="300" height="200" rx="56" fill="url(#g)"/>
+    <text x="600" y="470" font-family="sans-serif" font-weight="800" font-size="220" fill="#fff" text-anchor="middle">A</text>
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+  </svg>
+</template>
+<div style="{{ rootStyle }}" data-screen-label="{{ view }}">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:24px;padding:14px 36px;background:var(--nav);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)">
+    <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
+      <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,var(--accent),#8b5cf6);display:flex;align-items:center;justify-content:center;font-family:'Inter Tight';font-weight:800;color:#fff;font-size:15px">A</div>
+      <div style="font-family:'Inter Tight';font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.02em">Ayush Chaudhari</div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:2px;padding:4px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px">
+      <div onClick="{{ goHome }}" style="{{ tabHome }}">Portfolio</div>
+      <div onClick="{{ goAI }}" style="{{ tabAI }}">AI</div>
+      <div onClick="{{ goBackend }}" style="{{ tabBackend }}">Backend</div>
+      <div onClick="{{ goWeb3 }}" style="{{ tabWeb3 }}">Web3</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:2px">
+      <div onClick="{{ goBlog }}" style="{{ linkBlog }}">Blog</div>
+      <div onClick="{{ goSystem }}" style="{{ linkSys }}">System</div>
+      <div onClick="{{ goAdmin }}" style="{{ linkAdmin }}">Admin</div>
+    </div>
+    <div onClick="{{ toggleTheme }}" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:15px" style-hover="background:var(--surface-2);color:var(--ink)">{{ themeIcon }}</div>
+    <div style="padding:9px 18px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:600;font-family:'Inter Tight';cursor:pointer" style-hover="opacity:.88">Contact</div>
+  </nav>
+
+  <!-- ===================== HOME ===================== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <!-- HERO -->
+    <section style="max-width:1180px;margin:0 auto;padding:96px 36px 60px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center">
+      <div style="animation:rise .6s ease both">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:26px">
+          <span style="width:7px;height:7px;border-radius:99px;background:#22c55e;box-shadow:0 0 8px #22c55e"></span>Production AI, engineered properly.
+        </div>
+        <h1 style="font-family:'Inter Tight';font-weight:800;font-size:54px;line-height:1.04;letter-spacing:-.03em;color:var(--ink);margin-bottom:22px">I build the backend systems behind AI products.</h1>
+        <p style="font-size:17px;line-height:1.65;color:var(--muted);max-width:520px;margin-bottom:14px">Production microservices, multi-provider LLM orchestration, and on-chain apps. I care about the unglamorous parts — RBAC, idempotency, zero-downtime migrations — that make AI products actually work.</p>
+        <div style="font-family:'JetBrains Mono';font-size:13px;color:var(--faint);margin-bottom:30px">Backend &amp; Generative AI Engineer · Ahmedabad, India</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a style="padding:13px 22px;border-radius:11px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none;box-shadow:0 8px 24px -8px var(--accent)" style-hover="transform:translateY(-2px)">Contact</a>
+          <a style="padding:13px 22px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none" style-hover="background:var(--surface-2)">View résumé</a>
+          <a style="padding:13px 22px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none" style-hover="background:var(--surface-2)">GitHub ↗</a>
+        </div>
+      </div>
+      <!-- terminal -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.5);animation:rise .7s ease both">
+        <div style="display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--border);background:var(--surface-2)">
+          <span style="width:11px;height:11px;border-radius:99px;background:#ff5f57"></span>
+          <span style="width:11px;height:11px;border-radius:99px;background:#febc2e"></span>
+          <span style="width:11px;height:11px;border-radius:99px;background:#28c840"></span>
+          <span style="margin-left:8px;font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">orchestrator.py</span>
+        </div>
+        <pre style="padding:20px;font-family:'JetBrains Mono';font-size:13px;line-height:1.7;color:var(--muted);white-space:pre-wrap;min-height:240px">{{ typed }}<span style="display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:-2px;animation:blink 1s step-end infinite"></span></pre>
+      </div>
+    </section>
+
+    <!-- AUDIENCE SWITCHER -->
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 50px">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:24px 28px;border-radius:18px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-family:'Inter Tight';font-weight:600;font-size:16px;color:var(--ink)">I'm hiring for…</div>
+        <div onClick="{{ goAI }}" style="flex:1;min-width:180px;padding:16px 18px;border-radius:13px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer" style-hover="border-color:#8b5cf6;transform:translateY(-2px)">
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#8b5cf6;margin-bottom:5px">/ai</div>
+          <div style="font-family:'Inter Tight';font-weight:700;font-size:17px;color:var(--ink)">AI &amp; LLM →</div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:3px">Orchestration · RAG · agents</div>
+        </div>
+        <div style="flex:1;min-width:180px;padding:16px 18px;border-radius:13px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer" style-hover="border-color:#38bdf8;transform:translateY(-2px)">
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#38bdf8;margin-bottom:5px">/backend</div>
+          <div style="font-family:'Inter Tight';font-weight:700;font-size:17px;color:var(--ink)">Backend →</div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:3px">APIs · systems · scale</div>
+        </div>
+        <div style="flex:1;min-width:180px;padding:16px 18px;border-radius:13px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer" style-hover="border-color:#f5b942;transform:translateY(-2px)">
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#f5b942;margin-bottom:5px">/web3</div>
+          <div style="font-family:'Inter Tight';font-weight:700;font-size:17px;color:var(--ink)">Blockchain →</div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:3px">Solidity · contracts · NFTs</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS BAND -->
+    <section style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)">
+      <div style="max-width:1180px;margin:0 auto;padding:42px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+        <div><div style="font-family:'Inter Tight';font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em">{{ m1 }}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">leads co-managed</div></div>
+        <div><div style="font-family:'Inter Tight';font-weight:800;font-size:38px;color:var(--accent);letter-spacing:-.02em">{{ m3 }}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">LLM cost reduction (cached)</div></div>
+        <div><div style="font-family:'Inter Tight';font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em">{{ m4 }}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">languages supported (RAG)</div></div>
+        <div><div style="font-family:'Inter Tight';font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em">{{ m2 }}</div><div style="font-size:13px;color:var(--muted);margin-top:4px">sales reps onboarded</div></div>
+      </div>
+    </section>
+
+    <!-- FEATURED WORK -->
+    <section style="max-width:1180px;margin:0 auto;padding:70px 36px 40px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">01 / FEATURED WORK</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Selected case studies</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <sc-for list="{{ featured }}" as="p" hint-placeholder-count="6">
+          <div onClick="{{ goCase }}" style="padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:transform .2s" style-hover="transform:translateY(-4px);border-color:var(--accent)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 9px;border-radius:7px;background:var(--accent-soft)">{{ p.tag }}</div>
+              <div style="font-family:'Inter Tight';font-weight:700;font-size:13px;color:var(--muted)">{{ p.metric }}</div>
+            </div>
+            <h3 style="font-family:'Inter Tight';font-weight:700;font-size:19px;color:var(--ink);margin-bottom:7px">{{ p.title }}</h3>
+            <p style="font-size:13.5px;line-height:1.6;color:var(--muted);margin-bottom:16px">{{ p.desc }}</p>
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">{{ p.stack }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section style="max-width:1180px;margin:0 auto;padding:50px 36px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">02 / STACK</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Tech, by domain</h2>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+        <sc-for list="{{ stack }}" as="g" hint-placeholder-count="5">
+          <div style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-family:'Inter Tight';font-weight:700;font-size:14px;color:var(--ink);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)">{{ g.domain }}</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="5">
+                <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--muted);line-height:1.4">{{ it }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section style="max-width:1180px;margin:0 auto;padding:50px 36px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">03 / EXPERIENCE</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Where I've worked</h2>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;padding:24px 0;border-top:1px solid var(--border)">
+            <div style="font-family:'JetBrains Mono';font-size:12.5px;color:var(--faint)">{{ t.time }}</div>
+            <div>
+              <div style="font-family:'Inter Tight';font-weight:700;font-size:19px;color:var(--ink)">{{ t.role }}</div>
+              <div style="font-size:14px;color:var(--accent);margin:4px 0 8px">{{ t.org }}</div>
+              <div style="font-size:13.5px;line-height:1.6;color:var(--muted)">{{ t.place }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- ABOUT + FINAL CTA -->
+    <section style="max-width:1180px;margin:0 auto;padding:50px 36px 40px">
+      <div style="padding:48px;border-radius:22px;background:linear-gradient(150deg,var(--accent-soft),var(--surface));border:1px solid var(--border)">
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:14px">04 / PHILOSOPHY</div>
+        <p style="font-family:'Inter Tight';font-weight:500;font-size:25px;line-height:1.45;color:var(--ink);letter-spacing:-.015em;max-width:780px;margin-bottom:30px">The demo is the easy part. I obsess over the systems underneath — the access checks, the idempotent writes, the migrations that ship with zero downtime — because that's what makes an AI product survive contact with real users.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a style="padding:13px 22px;border-radius:11px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none" style-hover="transform:translateY(-2px)">Get in touch</a>
+          <a style="padding:13px 22px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none">View résumé</a>
+        </div>
+      </div>
+    </section>
+    <footer style="border-top:1px solid var(--border);padding:30px 36px;text-align:center;font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">ayushchaudhari3516@gmail.com · github.com/ayush-3516 · Ahmedabad, India</footer>
+  </div>
+  </sc-if>
+
+  <!-- ===================== AI LANDING ===================== -->
+  <sc-if value="{{ isAI }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="max-width:1180px;margin:0 auto;padding:90px 36px 56px;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;border:1px solid rgba(139,92,246,.35);background:rgba(139,92,246,.1);font-family:'JetBrains Mono';font-size:12px;color:#8b5cf6;margin-bottom:26px">/ai · APPLIED LLM SYSTEMS</div>
+      <h1 style="font-family:'Inter Tight';font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.03em;color:var(--ink);max-width:880px;margin:0 auto 22px">I orchestrate LLMs into products that ship — and don't go bankrupt.</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--muted);max-width:640px;margin:0 auto 32px">Multi-provider fallback chains, RAG over 40+ languages, multi-agent systems, and prompt caching that cut generation cost by ~95%.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a style="padding:13px 24px;border-radius:11px;background:#8b5cf6;color:#fff;font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none;box-shadow:0 10px 30px -10px #8b5cf6" style-hover="transform:translateY(-2px)">See AI work</a>
+        <a style="padding:13px 24px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none">Contact</a>
+      </div>
+    </section>
+
+    <!-- proof points -->
+    <section style="max-width:1180px;margin:0 auto;padding:20px 36px 56px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <sc-for list="{{ aiProof }}" as="x" hint-placeholder-count="4">
+          <div style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:#8b5cf6;letter-spacing:-.02em">{{ x.big }}</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5">{{ x.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- AI projects -->
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 50px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:#8b5cf6;margin-bottom:10px">FEATURED AI WORK</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Systems I've built</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+        <sc-for list="{{ aiProjects }}" as="p" hint-placeholder-count="5">
+          <div onClick="{{ goCase }}" style="padding:26px;border-radius:16px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="transform:translateY(-4px);border-color:#8b5cf6">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+              <h3 style="font-family:'Inter Tight';font-weight:700;font-size:20px;color:var(--ink)">{{ p.title }}</h3>
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:#8b5cf6;padding:4px 9px;border-radius:7px;background:rgba(139,92,246,.12);white-space:nowrap">{{ p.tag }}</div>
+            </div>
+            <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px">{{ p.desc }}</p>
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">{{ p.stack }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- recommended posts -->
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 70px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:#8b5cf6;margin-bottom:10px">FROM THE BLOG</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:28px">Recommended reading</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ aiPosts }}" as="b" hint-placeholder-count="3">
+          <div onClick="{{ goArticle }}" style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="border-color:#8b5cf6">
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:#8b5cf6;margin-bottom:10px">{{ b.tag }} · {{ b.read }}</div>
+            <h3 style="font-family:'Inter Tight';font-weight:600;font-size:16px;line-height:1.35;color:var(--ink)">{{ b.title }}</h3>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <footer style="border-top:1px solid var(--border);padding:30px 36px;text-align:center;font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">ayushchaudhari3516@gmail.com · github.com/ayush-3516 · Ahmedabad, India</footer>
+  </div>
+  </sc-if>
+
+  <!-- ===================== DESIGN SYSTEM ===================== -->
+  <sc-if value="{{ isSystem }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1180px;margin:0 auto;padding:70px 36px 80px">
+    <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">DESIGN SYSTEM</div>
+    <h1 style="font-family:'Inter Tight';font-weight:800;font-size:42px;color:var(--ink);letter-spacing:-.025em;margin-bottom:8px">One brand, four accents.</h1>
+    <p style="font-size:16px;color:var(--muted);max-width:600px;margin-bottom:48px">A single token system. Each audience page layers a domain accent on the same base — unified brand, tailored emphasis.</p>
+
+    <!-- color tokens -->
+    <h2 style="font-family:'Inter Tight';font-weight:700;font-size:22px;color:var(--ink);margin-bottom:18px">Color · accents</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)"><div style="height:80px;background:var(--accent)"></div><div style="padding:14px;background:var(--surface)"><div style="font-family:'Inter Tight';font-weight:600;font-size:14px;color:var(--ink)">Brand</div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">indigo · #6366f1</div></div></div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)"><div style="height:80px;background:#8b5cf6"></div><div style="padding:14px;background:var(--surface)"><div style="font-family:'Inter Tight';font-weight:600;font-size:14px;color:var(--ink)">AI</div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">violet · #8b5cf6</div></div></div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)"><div style="height:80px;background:#38bdf8"></div><div style="padding:14px;background:var(--surface)"><div style="font-family:'Inter Tight';font-weight:600;font-size:14px;color:var(--ink)">Backend</div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">cool blue · #38bdf8</div></div></div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)"><div style="height:80px;background:#f5b942"></div><div style="padding:14px;background:var(--surface)"><div style="font-family:'Inter Tight';font-weight:600;font-size:14px;color:var(--ink)">Web3</div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">amber · #f5b942</div></div></div>
+    </div>
+
+    <!-- base surfaces -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:48px">
+      <div style="padding:16px;border-radius:11px;background:var(--bg);border:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted)">--bg</div></div>
+      <div style="padding:16px;border-radius:11px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted)">--surface</div></div>
+      <div style="padding:16px;border-radius:11px;background:var(--surface-2);border:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted)">--surface-2</div></div>
+      <div style="padding:16px;border-radius:11px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--ink)">--ink</div></div>
+      <div style="padding:16px;border-radius:11px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted)">--muted</div></div>
+    </div>
+
+    <!-- type scale -->
+    <h2 style="font-family:'Inter Tight';font-weight:700;font-size:22px;color:var(--ink);margin-bottom:18px">Typography</h2>
+    <div style="padding:28px;border-radius:16px;background:var(--surface);border:1px solid var(--border);margin-bottom:48px;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:baseline;gap:20px"><span style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);width:120px">Display / 54</span><span style="font-family:'Inter Tight';font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.03em">Inter Tight</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;border-top:1px solid var(--border);padding-top:18px"><span style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);width:120px">Heading / 32</span><span style="font-family:'Inter Tight';font-weight:700;font-size:26px;color:var(--ink)">Selected case studies</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;border-top:1px solid var(--border);padding-top:18px"><span style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);width:120px">Body / 17</span><span style="font-family:'Inter';font-size:16px;color:var(--muted)">Inter — generous line-height for reading.</span></div>
+      <div style="display:flex;align-items:baseline;gap:20px;border-top:1px solid var(--border);padding-top:18px"><span style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);width:120px">Mono / 13</span><span style="font-family:'JetBrains Mono';font-size:14px;color:var(--accent)">JetBrains Mono — labels &amp; metrics</span></div>
+    </div>
+
+    <!-- components -->
+    <h2 style="font-family:'Inter Tight';font-weight:700;font-size:22px;color:var(--ink);margin-bottom:18px">Components</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:30px">
+      <div style="padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:16px">Buttons</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="padding:11px;border-radius:10px;background:var(--accent);color:#fff;font-family:'Inter Tight';font-weight:600;font-size:13px;text-align:center">Primary</div>
+          <div style="padding:11px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink);font-family:'Inter Tight';font-weight:600;font-size:13px;text-align:center">Secondary</div>
+        </div>
+      </div>
+      <div style="padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:16px">Badges</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 9px;border-radius:7px;background:var(--accent-soft)">Flagship</span>
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#8b5cf6;padding:4px 9px;border-radius:7px;background:rgba(139,92,246,.12)">RAG</span>
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:#f5b942;padding:4px 9px;border-radius:7px;background:rgba(245,185,66,.12)">Solidity</span>
+        </div>
+      </div>
+      <div style="padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:16px">Shadow &amp; radius</div>
+        <div style="height:54px;border-radius:14px;background:var(--surface-2);box-shadow:0 16px 32px -16px rgba(0,0,0,.5);border:1px solid var(--border)"></div>
+        <div style="font-family:'JetBrains Mono';font-size:10px;color:var(--faint);margin-top:10px">radius 14 · soft low-spread</div>
+      </div>
+    </div>
+
+    <!-- motion notes -->
+    <h2 style="font-family:'Inter Tight';font-weight:700;font-size:22px;color:var(--ink);margin:18px 0 18px">Motion</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;font-family:'JetBrains Mono';font-size:13px;color:var(--muted)">
+      <div style="padding:14px 18px;border-radius:11px;background:var(--surface);border:1px solid var(--border)">scroll-reveal — opacity + 14px rise, 0.6s ease</div>
+      <div style="padding:14px 18px;border-radius:11px;background:var(--surface);border:1px solid var(--border)">hover-lift — translateY(-4px), border → accent</div>
+      <div style="padding:14px 18px;border-radius:11px;background:var(--surface);border:1px solid var(--border)">metric counters — ease-out count-up on view enter</div>
+      <div style="padding:14px 18px;border-radius:11px;background:var(--surface);border:1px solid var(--border)">hero terminal — typewriter, blinking caret · all respect prefers-reduced-motion</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== BACKEND LANDING ===================== -->
+  <sc-if value="{{ isBackend }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="max-width:1180px;margin:0 auto;padding:90px 36px 56px;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:var(--accent-soft);font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:26px">/backend · SYSTEMS &amp; APIS</div>
+      <h1 style="font-family:'Inter Tight';font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.03em;color:var(--ink);max-width:880px;margin:0 auto 22px">I build the backend that keeps AI products fast, correct, and online.</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--muted);max-width:660px;margin:0 auto 32px">System design, microservices, RBAC, real-time UX, and zero-downtime migrations — the load-bearing engineering behind products that scale to thousands of users.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a style="padding:13px 24px;border-radius:11px;background:var(--accent);color:#fff;font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none;box-shadow:0 10px 30px -10px var(--accent)" style-hover="transform:translateY(-2px)">See backend work</a>
+        <a style="padding:13px 24px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none">Contact</a>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:20px 36px 56px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <sc-for list="{{ backendProof }}" as="x" hint-placeholder-count="4">
+          <div style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-family:'Inter Tight';font-weight:800;font-size:24px;color:var(--accent);letter-spacing:-.02em">{{ x.big }}</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5">{{ x.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 50px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">FEATURED BACKEND WORK</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Architecture I've shipped</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+        <sc-for list="{{ backendProjects }}" as="p" hint-placeholder-count="4">
+          <div onClick="{{ goCase }}" style="padding:26px;border-radius:16px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="transform:translateY(-4px);border-color:var(--accent)">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+              <h3 style="font-family:'Inter Tight';font-weight:700;font-size:20px;color:var(--ink)">{{ p.title }}</h3>
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 9px;border-radius:7px;background:var(--accent-soft);white-space:nowrap">{{ p.tag }}</div>
+            </div>
+            <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px">{{ p.desc }}</p>
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">{{ p.stack }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 70px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">FROM THE BLOG</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:28px">Recommended reading</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ backendPosts }}" as="b" hint-placeholder-count="3">
+          <div onClick="{{ goArticle }}" style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="border-color:var(--accent)">
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);margin-bottom:10px">{{ b.tag }} · {{ b.read }}</div>
+            <h3 style="font-family:'Inter Tight';font-weight:600;font-size:16px;line-height:1.35;color:var(--ink)">{{ b.title }}</h3>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <footer style="border-top:1px solid var(--border);padding:30px 36px;text-align:center;font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">ayushchaudhari3516@gmail.com · github.com/ayush-3516 · Ahmedabad, India</footer>
+  </div>
+  </sc-if>
+
+  <!-- ===================== WEB3 LANDING ===================== -->
+  <sc-if value="{{ isWeb3 }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section style="max-width:1180px;margin:0 auto;padding:90px 36px 56px;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:var(--accent-soft);font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:26px">/web3 · ON-CHAIN ENGINEERING</div>
+      <h1 style="font-family:'Inter Tight';font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.03em;color:var(--ink);max-width:880px;margin:0 auto 22px">Smart contracts, shipped with a security-first mindset.</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--muted);max-width:660px;margin:0 auto 32px">Multi-sig wallets, ERC-721 with IPFS metadata, and ERC-20 tokens deployed across Ethereum and Polygon testnets — backed by a developer-relations role in a smart-contract auditing ecosystem.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a style="padding:13px 24px;border-radius:11px;background:var(--accent);color:#1a1205;font-size:14px;font-weight:700;font-family:'Inter Tight';text-decoration:none;box-shadow:0 10px 30px -10px var(--accent)" style-hover="transform:translateY(-2px)">See on-chain work</a>
+        <a style="padding:13px 24px;border-radius:11px;background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:14px;font-weight:600;font-family:'Inter Tight';text-decoration:none">Contact</a>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:20px 36px 56px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <sc-for list="{{ web3Proof }}" as="x" hint-placeholder-count="4">
+          <div style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-family:'Inter Tight';font-weight:800;font-size:24px;color:var(--accent);letter-spacing:-.02em">{{ x.big }}</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5">{{ x.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 50px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">FEATURED ON-CHAIN WORK</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:32px">Contracts &amp; credibility</h2>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+        <sc-for list="{{ web3Projects }}" as="p" hint-placeholder-count="2">
+          <div style="padding:26px;border-radius:16px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="transform:translateY(-4px);border-color:var(--accent)">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+              <h3 style="font-family:'Inter Tight';font-weight:700;font-size:20px;color:var(--ink)">{{ p.title }}</h3>
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 9px;border-radius:7px;background:var(--accent-soft);white-space:nowrap">{{ p.tag }}</div>
+            </div>
+            <p style="font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px">{{ p.desc }}</p>
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">{{ p.stack }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="max-width:1180px;margin:0 auto;padding:30px 36px 70px">
+      <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">FROM THE BLOG</div>
+      <h2 style="font-family:'Inter Tight';font-weight:700;font-size:32px;color:var(--ink);letter-spacing:-.02em;margin-bottom:28px">Recommended reading</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ web3Posts }}" as="b" hint-placeholder-count="3">
+          <div onClick="{{ goArticle }}" style="padding:22px;border-radius:14px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="border-color:var(--accent)">
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);margin-bottom:10px">{{ b.tag }} · {{ b.read }}</div>
+            <h3 style="font-family:'Inter Tight';font-weight:600;font-size:16px;line-height:1.35;color:var(--ink)">{{ b.title }}</h3>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <footer style="border-top:1px solid var(--border);padding:30px 36px;text-align:center;font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">ayushchaudhari3516@gmail.com · github.com/ayush-3516 · Ahmedabad, India</footer>
+  </div>
+  </sc-if>
+
+  <!-- ===================== BLOG INDEX ===================== -->
+  <sc-if value="{{ isBlog }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1180px;margin:0 auto;padding:70px 36px 80px">
+    <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">BLOG</div>
+    <h1 style="font-family:'Inter Tight';font-weight:800;font-size:42px;color:var(--ink);letter-spacing:-.025em;margin-bottom:30px">Writing on systems, AI &amp; on-chain.</h1>
+
+    <div onClick="{{ goArticle }}" style="display:grid;grid-template-columns:1.2fr 1fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;cursor:pointer;background:var(--surface)" style-hover="border-color:var(--accent)">
+      <div style="padding:40px;display:flex;flex-direction:column;justify-content:center">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 9px;border-radius:7px;background:var(--accent-soft)">FEATURED</span>
+          <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted);padding:4px 9px;border-radius:7px;background:var(--surface-2)">LLM · 8 min</span>
+        </div>
+        <h2 style="font-family:'Inter Tight';font-weight:700;font-size:28px;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:12px">Building a multi-provider fallback chain that actually fails over</h2>
+        <p style="font-size:15px;line-height:1.6;color:var(--muted);margin-bottom:18px">Anthropic → Gemini → OpenAI sounds simple until the first provider half-fails. Here's the orchestration layer I built for Meraki, and the edge cases that cut our LLM bill ~95%.</p>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:30px;height:30px;border-radius:99px;background:linear-gradient(140deg,var(--accent),#8b5cf6)"></div>
+          <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">Ayush Chaudhari · Jun 2026</div>
+        </div>
+      </div>
+      <div style="background:repeating-linear-gradient(135deg,var(--surface-2),var(--surface-2) 11px,var(--surface) 11px,var(--surface) 22px);display:flex;align-items:center;justify-content:center;min-height:240px;border-left:1px solid var(--border)">
+        <span style="font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">cover image</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px">
+      <div style="flex:1;min-width:220px;display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:11px;background:var(--surface);border:1px solid var(--border)">
+        <span style="color:var(--faint)">⌕</span>
+        <span style="font-size:14px;color:var(--faint)">Search articles…</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ blogCats }}" as="c" hint-placeholder-count="5">
+          <div style="{{ c.style }}">{{ c.name }}</div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <sc-for list="{{ blogPosts }}" as="b" hint-placeholder-count="6">
+        <div onClick="{{ goArticle }}" style="border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;flex-direction:column" style-hover="transform:translateY(-4px);border-color:var(--accent)">
+          <div style="height:120px;background:repeating-linear-gradient(135deg,var(--surface-2),var(--surface-2) 9px,var(--surface) 9px,var(--surface) 18px);border-bottom:1px solid var(--border)"></div>
+          <div style="padding:20px;flex:1;display:flex;flex-direction:column">
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);margin-bottom:10px">{{ b.tag }} · {{ b.read }}</div>
+            <h3 style="font-family:'Inter Tight';font-weight:600;font-size:16px;line-height:1.35;color:var(--ink);margin-bottom:10px">{{ b.title }}</h3>
+            <p style="font-size:13px;line-height:1.55;color:var(--muted);flex:1">{{ b.excerpt }}</p>
+            <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-top:14px">{{ b.date }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== BLOG ARTICLE (TOC) ===================== -->
+  <sc-if value="{{ isArticle }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1180px;margin:0 auto;padding:48px 36px 80px">
+    <div onClick="{{ goBlog }}" style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:28px;cursor:pointer">← Blog</div>
+    <div style="display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:start">
+
+      <aside style="position:sticky;top:84px">
+        <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);letter-spacing:.06em;margin-bottom:14px">ON THIS PAGE</div>
+        <div style="display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--border)">
+          <sc-for list="{{ toc }}" as="t" hint-placeholder-count="7">
+            <div onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-top:26px;padding:18px;border-radius:14px;background:var(--surface);border:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <div style="width:34px;height:34px;border-radius:99px;background:linear-gradient(140deg,var(--accent),#8b5cf6)"></div>
+            <div><div style="font-family:'Inter Tight';font-weight:700;font-size:13px;color:var(--ink)">Ayush Chaudhari</div><div style="font-family:'JetBrains Mono';font-size:10px;color:var(--faint)">Backend &amp; GenAI</div></div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;text-align:center;padding:7px;border-radius:8px;background:var(--surface-2);font-size:11px;color:var(--muted);font-family:'JetBrains Mono'">Share</div>
+            <div style="flex:1;text-align:center;padding:7px;border-radius:8px;background:var(--surface-2);font-size:11px;color:var(--muted);font-family:'JetBrains Mono'">Copy</div>
+          </div>
+        </div>
+      </aside>
+
+      <article style="max-width:680px">
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:14px">LLM · 8 MIN READ · JUN 2026</div>
+        <h1 style="font-family:'Inter Tight';font-weight:800;font-size:40px;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:24px">Building a multi-provider fallback chain that actually fails over</h1>
+
+        <h2 id="intro" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">Why fallback matters</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:18px">Every LLM provider has a bad day. Rate limits spike, a region degrades, a model gets deprecated mid-quarter. If your AI feature is wired to a single provider, your product inherits all of that risk directly. On Meraki — an AI sales-intelligence platform serving 100+ reps — call-coaching reports had to generate reliably or the whole workflow stalled.</p>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:26px">The answer was a provider-agnostic orchestration layer: Anthropic Claude first, Gemini second, OpenAI third, with caching and observability wrapped around all three.</p>
+
+        <h2 id="problem" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">The problem with a single provider</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:26px">A naive integration treats the provider SDK as infrastructure. But a 429 or a 503 shouldn't surface to the user — it should trigger a transparent retry on the next provider. The trick is normalizing request and response shapes so the rest of the system never knows which model answered.</p>
+
+        <h2 id="design" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">Designing the chain</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:18px">Each provider implements the same interface. The orchestrator walks the chain in priority order and returns the first success:</p>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:26px">
+          <div style="padding:10px 16px;border-bottom:1px solid var(--border);background:var(--surface-2);font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">orchestrator.py</div>
+          <pre style="padding:18px;font-family:'JetBrains Mono';font-size:13px;line-height:1.7;color:var(--muted);white-space:pre-wrap;margin:0">CHAIN = [Claude, Gemini, OpenAI]
+
+async def generate(prompt, **kw):
+    for model in CHAIN:
+        try:
+            return await model.complete(
+                prompt, cache_ttl="24h", **kw)
+        except (RateLimit, ServerError):
+            log.warn(f"{model.name} failed, falling over")
+            continue
+    raise AllProvidersFailed()</pre>
+        </div>
+
+        <h2 id="caching" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">Prompt caching for ~95% savings</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:26px">Coaching reports reuse a large, stable system prompt. With 24-hour prompt caching, the static prefix is billed once and reused across the day's generations — which cut cost on cached calls by roughly 95%. The cache key is derived from the prompt prefix hash, so cache correctness is automatic.</p>
+
+        <h2 id="ratelimits" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">Handling partial failures</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:26px">The hard cases aren't clean errors — they're a provider that returns a 200 with truncated JSON, or streams half a response then drops. The orchestrator validates the shape of each response before accepting it, treating a malformed success the same as a hard failure and falling over.</p>
+
+        <h2 id="observability" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">Observability</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:26px">Every run persists which provider answered, latency, token counts, cache hit/miss, and any fallover reason. That audit trail is what turns "the AI feels slow today" into a chart you can act on.</p>
+
+        <h2 id="lessons" style="font-family:'Inter Tight';font-weight:700;font-size:24px;color:var(--ink);margin:8px 0 14px;letter-spacing:-.02em">What I'd change next time</h2>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:30px">I'd add per-provider circuit breakers so a consistently-failing provider is skipped for a cooldown window instead of being retried on every request. Cheap to add, and it shaves tail latency on bad days.</p>
+
+        <div style="padding:30px;border-radius:18px;background:linear-gradient(150deg,var(--accent-soft),var(--surface));border:1px solid var(--border);margin-bottom:40px">
+          <div style="font-family:'Inter Tight';font-weight:700;font-size:19px;color:var(--ink);margin-bottom:8px">Get the next post in your inbox</div>
+          <div style="font-size:14px;color:var(--muted);margin-bottom:16px">Backend, AI, and on-chain engineering. No spam.</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px;padding:11px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:13px;color:var(--faint)">you@company.com</div>
+            <div style="padding:11px 20px;border-radius:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;font-family:'Inter Tight'">Subscribe</div>
+          </div>
+        </div>
+
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:16px">RELATED POSTS</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <sc-for list="{{ relatedPosts }}" as="r" hint-placeholder-count="2">
+            <div onClick="{{ goArticle }}" style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border);cursor:pointer" style-hover="border-color:var(--accent)">
+              <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);margin-bottom:8px">{{ r.tag }} · {{ r.read }}</div>
+              <div style="font-family:'Inter Tight';font-weight:600;font-size:15px;line-height:1.35;color:var(--ink)">{{ r.title }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </article>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== CASE STUDY (MERAKI) ===================== -->
+  <sc-if value="{{ isCase }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1000px;margin:0 auto;padding:48px 36px 80px">
+    <div onClick="{{ goHome }}" style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:28px;cursor:pointer">← Work</div>
+    <div style="display:flex;gap:8px;margin-bottom:18px">
+      <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--accent);padding:4px 10px;border-radius:7px;background:var(--accent-soft)">FLAGSHIP</span>
+      <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--muted);padding:4px 10px;border-radius:7px;background:var(--surface-2)">AI · BACKEND</span>
+    </div>
+    <h1 style="font-family:'Inter Tight';font-weight:800;font-size:46px;line-height:1.05;letter-spacing:-.03em;color:var(--ink);margin-bottom:14px">Meraki — AI Sales Intelligence Platform</h1>
+    <p style="font-size:18px;line-height:1.6;color:var(--muted);max-width:720px;margin-bottom:30px">Scaling a legacy single-owner lead model into a multi-owner system for 100+ reps co-managing 50K+ leads — with a zero-downtime cutover and ~95% LLM cost reduction.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:14px">
+      <div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:6px">ROLE</div><div style="font-size:14px;color:var(--ink);line-height:1.5">Backend &amp; GenAI Engineer — architecture, migration, AI features</div></div>
+      <div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:6px">STACK</div><div style="font-size:14px;color:var(--ink);line-height:1.5">Python · Flask · MongoDB · multi-provider LLMs</div></div>
+      <div style="padding:20px"><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:6px">LINKS</div><div style="font-size:14px;color:var(--accent);line-height:1.6">GitHub ↗ · Live demo ↗</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px">
+      <div style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:var(--ink)">50K+</div><div style="font-size:12px;color:var(--muted);margin-top:4px">leads co-managed</div></div>
+      <div style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:var(--accent)">~95%</div><div style="font-size:12px;color:var(--muted);margin-top:4px">LLM cost cut</div></div>
+      <div style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:var(--ink)">0</div><div style="font-size:12px;color:var(--muted);margin-top:4px">downtime on cutover</div></div>
+      <div style="padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)"><div style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:var(--ink)">sub-ms</div><div style="font-size:12px;color:var(--muted);margin-top:4px">access checks</div></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:34px;max-width:760px">
+      <div>
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">THE PROBLEM</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted)">A legacy single-owner lead model couldn't support 100+ reps co-managing 50K+ leads. Ownership was binary, access was coarse, and there was no safe way to reassign work without race conditions or downtime.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">ARCHITECTURE</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted);margin-bottom:16px">A multi-owner lead system with an RBAC framework — primary, co-assigned, opportunity, and performer roles — backed by MongoDB sparse indexes for sub-millisecond access checks. A single-writer assignment service with idempotent backfill guaranteed correctness under concurrency.</p>
+        <div data-om-raster style="border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:120px;text-align:center;padding:16px;border-radius:10px;background:var(--surface-2);font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">CRM ETL<br>(Zoho · Merrito)</div>
+          <div style="color:var(--faint)">→</div>
+          <div style="flex:1;min-width:120px;text-align:center;padding:16px;border-radius:10px;background:var(--accent-soft);font-family:'JetBrains Mono';font-size:12px;color:var(--accent)">Assignment<br>service</div>
+          <div style="color:var(--faint)">→</div>
+          <div style="flex:1;min-width:120px;text-align:center;padding:16px;border-radius:10px;background:var(--surface-2);font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">RBAC + sparse<br>indexes</div>
+          <div style="color:var(--faint)">→</div>
+          <div style="flex:1;min-width:120px;text-align:center;padding:16px;border-radius:10px;background:var(--surface-2);font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">LLM coaching<br>(fallback chain)</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">CHALLENGES</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted)">Migrating live data with no downtime, normalizing 8+ CRM field variants with regex parsing, and keeping LLM costs sane at report-generation scale. Each demanded a different discipline — migration safety, data hygiene, and cost engineering.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">SOLUTION</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted)">An 8-phase, feature-flagged rollout migrated the model with zero downtime. A multi-provider LLM fallback chain (Claude → Gemini → OpenAI) with 24h prompt caching powered AI call-coaching at ~95% lower cost on cached generations. Zoho + Merrito CRM integration ran via incremental ETL, and AI lead scoring drove automated multi-channel nurture across WhatsApp, LinkedIn, and email.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">OUTCOME / IMPACT</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--muted)">Scaled to 100+ reps and 50K+ leads with a zero-downtime cutover and ~95% LLM cost reduction on cached reports — turning a brittle single-owner model into a system the sales org could grow on.</p>
+      </div>
+      <div style="padding:26px;border-radius:16px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent);margin-bottom:10px">WHAT I LEARNED</div>
+        <p style="font-size:17px;line-height:1.8;color:var(--ink)">Migrations are a product feature, not a chore. Feature-flagging every phase turned a terrifying cutover into a series of reversible, observable steps — and that confidence is what let us move fast without breaking the sales floor.</p>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ===================== ADMIN / CMS ===================== -->
+  <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}">
+  <div style="display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 65px)">
+    <aside style="border-right:1px solid var(--border);background:var(--surface);padding:24px 16px;display:flex;flex-direction:column;gap:4px">
+      <div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);padding:6px 12px;letter-spacing:.06em">CONTENT</div>
+      <sc-for list="{{ adminNav }}" as="n" hint-placeholder-count="7">
+        <div style="{{ n.style }}">{{ n.label }}</div>
+      </sc-for>
+      <div style="flex:1"></div>
+      <div style="padding:14px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--border)">
+        <div style="font-family:'Inter Tight';font-weight:700;font-size:13px;color:var(--ink);margin-bottom:3px">All systems live</div>
+        <div style="font-family:'JetBrains Mono';font-size:10px;color:var(--muted)">last deploy · 2h ago</div>
+      </div>
+    </aside>
+
+    <main style="padding:28px 32px;background:var(--bg)">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:26px">
+        <div>
+          <h1 style="font-family:'Inter Tight';font-weight:800;font-size:26px;color:var(--ink);letter-spacing:-.02em">Projects</h1>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px">7 items · 5 published · 2 drafts</div>
+        </div>
+        <div style="flex:1"></div>
+        <div style="display:flex;align-items:center;gap:4px;padding:3px;border-radius:10px;background:var(--surface);border:1px solid var(--border)">
+          <div style="padding:6px 12px;border-radius:7px;background:var(--accent);color:#fff;font-size:12px;font-weight:600;font-family:'Inter Tight'">☾ Dark</div>
+          <div style="padding:6px 12px;border-radius:7px;color:var(--muted);font-size:12px;font-weight:500;font-family:'Inter Tight'">☀ Light</div>
+        </div>
+        <div style="padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;font-family:'Inter Tight'">+ New project</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--surface);margin-bottom:28px">
+        <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr;gap:0;padding:13px 20px;border-bottom:1px solid var(--border);background:var(--surface-2);font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">
+          <div>TITLE</div><div>DOMAIN</div><div>STATUS</div><div>UPDATED</div>
+        </div>
+        <sc-for list="{{ adminRows }}" as="r" hint-placeholder-count="7">
+          <div style="display:grid;grid-template-columns:2fr 1.3fr 1fr 1fr;gap:0;padding:15px 20px;border-bottom:1px solid var(--border);align-items:center" style-hover="background:var(--surface-2)">
+            <div style="font-family:'Inter Tight';font-weight:600;font-size:14px;color:var(--ink)">{{ r.title }}</div>
+            <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">{{ r.domain }}</div>
+            <div><span style="{{ r.statusStyle }}">{{ r.status }}</span></div>
+            <div style="font-family:'JetBrains Mono';font-size:12px;color:var(--faint)">{{ r.updated }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px">
+        <div style="border:1px solid var(--border);border-radius:16px;background:var(--surface);overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px">
+            <span style="font-family:'Inter Tight';font-weight:700;font-size:14px;color:var(--ink)">Editing · Meraki</span>
+            <span style="font-family:'JetBrains Mono';font-size:10px;color:var(--accent);padding:3px 8px;border-radius:6px;background:var(--accent-soft)">DRAFT</span>
+            <div style="flex:1"></div>
+            <span style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint)">autosaved</span>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+            <div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:6px">TITLE</div><div style="padding:11px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);font-size:14px;color:var(--ink)">Meraki — AI Sales Intelligence Platform</div></div>
+            <div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--faint);margin-bottom:6px">EXCERPT</div><div style="padding:11px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);font-size:14px;color:var(--muted);line-height:1.5">Scaling a single-owner lead model to 100+ reps with a zero-downtime cutover.</div></div>
+            <div style="display:flex;gap:10px">
+              <div style="padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;font-family:'Inter Tight'">Publish</div>
+              <div style="padding:10px 18px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink);font-size:13px;font-weight:600;font-family:'Inter Tight'">Save draft</div>
+              <div style="padding:10px 18px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;font-family:'Inter Tight'">⏱ Schedule</div>
+            </div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:16px;background:var(--surface);padding:20px">
+          <div style="font-family:'Inter Tight';font-weight:700;font-size:14px;color:var(--ink);margin-bottom:14px">Reusable blocks</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ adminBlocks }}" as="b" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border)">
+                <span style="font-family:'JetBrains Mono';font-size:12px;color:var(--accent)">{{ b.icon }}</span>
+                <span style="font-size:13px;color:var(--ink);font-family:'Inter Tight';font-weight:500">{{ b.name }}</span>
+                <div style="flex:1"></div>
+                <span style="font-family:'JetBrains Mono';font-size:10px;color:var(--faint)">+ add</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { theme: 'dark', view: 'home', counts: [0,0,0,0], typed: '', activeToc: 'intro' };
+
+  toc = [
+    { id:'intro', label:'Why fallback matters' },
+    { id:'problem', label:'The single-provider problem' },
+    { id:'design', label:'Designing the chain' },
+    { id:'caching', label:'Prompt caching' },
+    { id:'ratelimits', label:'Partial failures' },
+    { id:'observability', label:'Observability' },
+    { id:'lessons', label:"What I'd change" },
+  ];
+
+  componentDidMount(){
+    this.startCounters();
+    this.startTyping();
+    this._onScroll = () => this.trackToc();
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+  }
+
+  trackToc(){
+    if (this.state.view !== 'article') return;
+    let active = this.toc[0].id;
+    for (const t of this.toc){
+      const el = document.getElementById(t.id);
+      if (el && el.getBoundingClientRect().top <= 120) active = t.id;
+    }
+    if (active !== this.state.activeToc) this.setState({ activeToc: active });
+  }
+
+  goToc(id){
+    return () => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' });
+    };
+  }
+
+  startCounters(){
+    const targets = [50000, 100, 95, 40];
+    const dur = 1400, t0 = performance.now();
+    const ease = x => 1 - Math.pow(1 - x, 3);
+    const tick = (now) => {
+      const k = Math.min(1, (now - t0) / dur);
+      const e = ease(k);
+      this.setState({ counts: targets.map(t => Math.round(t * e)) });
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  startTyping(){
+    const code = [
+      'async def generate(prompt):',
+      '    for model in [CLAUDE, GEMINI, OPENAI]:',
+      '        try:',
+      '            r = await model.complete(',
+      '                prompt, cache_ttl="24h")',
+      '            return r          # ~95% cost cut',
+      '        except RateLimit:',
+      '            continue          # fallback chain'
+    ].join('\n');
+    let i = 0;
+    this._typer = setInterval(() => {
+      i += 2;
+      this.setState({ typed: code.slice(0, i) });
+      if (i >= code.length) clearInterval(this._typer);
+    }, 22);
+  }
+  componentWillUnmount(){ clearInterval(this._typer); window.removeEventListener('scroll', this._onScroll); }
+
+  go(v){ return () => { this.setState({ view: v, activeToc: 'intro' }); window.scrollTo(0,0); }; }
+  toggleTheme = () => this.setState(s => ({ theme: s.theme === 'dark' ? 'light' : 'dark' }));
+
+  domainAccent(view, dark){
+    const map = {
+      ai:      ['#8b5cf6', 'rgba(139,92,246,.13)'],
+      backend: [dark ? '#38bdf8' : '#0284c7', dark ? 'rgba(56,189,248,.13)' : 'rgba(2,132,199,.1)'],
+      web3:    [dark ? '#f5b942' : '#c2820a', dark ? 'rgba(245,185,66,.13)' : 'rgba(194,130,10,.1)'],
+    };
+    return map[view] || null;
+  }
+
+  link(active){
+    return active
+      ? "padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink);font-family:'Inter Tight';cursor:pointer"
+      : "padding:7px 12px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);font-family:'Inter Tight';cursor:pointer";
+  }
+
+  tocStyle(active){
+    return active
+      ? "padding:6px 14px;margin-left:-1px;border-left:2px solid var(--accent);font-size:13px;color:var(--accent);font-family:'Inter Tight';font-weight:600;cursor:pointer"
+      : "padding:6px 14px;margin-left:-1px;border-left:2px solid transparent;font-size:13px;color:var(--muted);font-family:'Inter Tight';cursor:pointer";
+  }
+
+  vars(dark){
+    return dark ? {
+      '--bg':'#0a0b0f','--nav':'rgba(10,11,15,.72)','--surface':'#13151d','--surface-2':'#1b1e29',
+      '--border':'rgba(255,255,255,.08)','--ink':'#f4f5f8','--muted':'#9aa0b0','--faint':'#666c7c',
+      '--accent':'#6366f1','--accent-soft':'rgba(99,102,241,.12)'
+    } : {
+      '--bg':'#f7f7f4','--nav':'rgba(247,247,244,.78)','--surface':'#ffffff','--surface-2':'#f0f1ed',
+      '--border':'rgba(0,0,0,.09)','--ink':'#0e0f14','--muted':'#525864','--faint':'#9398a3',
+      '--accent':'#4f46e5','--accent-soft':'rgba(79,70,229,.09)'
+    };
+  }
+
+  fmt1(n){ return n >= 1000 ? Math.round(n/1000) + 'K+' : n; }
+
+  statusStyle(s){
+    const c = s === 'Published' ? ['#22c55e','rgba(34,197,94,.13)']
+            : s === 'Draft' ? ['#9aa0b0','rgba(154,160,176,.13)']
+            : ['#f5b942','rgba(245,185,66,.13)'];
+    return `font-family:'JetBrains Mono';font-size:11px;font-weight:600;color:${c[0]};background:${c[1]};padding:3px 9px;border-radius:6px`;
+  }
+
+  tab(active){
+    return active
+      ? "padding:7px 13px;border-radius:8px;font-size:13px;font-weight:600;color:var(--ink);background:var(--surface);font-family:'Inter Tight';cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.15)"
+      : "padding:7px 13px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);font-family:'Inter Tight';cursor:pointer";
+  }
+
+  renderVals(){
+    const { theme, view, counts, typed } = this.state;
+    const dark = theme === 'dark';
+    const v = this.vars(dark);
+    const da = this.domainAccent(view, dark);
+    if (da){ v['--accent'] = da[0]; v['--accent-soft'] = da[1]; }
+    const rootStyle = Object.entries(v).map(([k,val]) => `${k}:${val}`).join(';')
+      + `;background:var(--bg);min-height:100vh;color:var(--ink);transition:background .3s`;
+
+    return {
+      rootStyle, view,
+      isHome: view==='home', isAI: view==='ai', isSystem: view==='system',
+      goHome: this.go('home'), goAI: this.go('ai'), goSystem: this.go('system'),
+      goBackend: this.go('backend'), goWeb3: this.go('web3'), goBlog: this.go('blog'),
+      goAdmin: this.go('admin'), goCase: this.go('case'), goArticle: this.go('article'),
+      toggleTheme: this.toggleTheme,
+      themeIcon: dark ? '☀' : '☾',
+      tabHome: this.tab(view==='home'), tabAI: this.tab(view==='ai'),
+      tabBackend: this.tab(view==='backend'), tabWeb3: this.tab(view==='web3'),
+      linkBlog: this.link(view==='blog'||view==='article'), linkSys: this.link(view==='system'), linkAdmin: this.link(view==='admin'),
+      isBackend: view==='backend', isWeb3: view==='web3', isBlog: view==='blog',
+      isArticle: view==='article', isCase: view==='case', isAdmin: view==='admin',
+      toc: this.toc.map(t => ({ ...t, go: this.goToc(t.id), style: this.tocStyle(t.id === this.state.activeToc) })),
+      typed,
+      m1: this.fmt1(counts[0]), m2: counts[1] + '+', m3: counts[2] + '%', m4: counts[3] + '+',
+      featured: [
+        { tag:'FLAGSHIP', metric:'50K+ leads', title:'Meraki', desc:'AI sales-intelligence platform: multi-owner RBAC, idempotent assignment service, 8-phase zero-downtime migration, multi-provider LLM coaching.', stack:'Python · Flask · MongoDB · LLMs' },
+        { tag:'AI · BACKEND', metric:'5 services', title:'College2Career', desc:'AI career platform across a 5-service architecture. GPT-4o + Gemini fallback, conversational data extraction, real-time Socket.IO + SSE.', stack:'Node · TS · React · MongoDB' },
+        { tag:'AI · BACKEND', metric:'multi-tenant', title:'GenAI Lab', desc:'Multi-tenant AI education platform: institutional RBAC hierarchy, per-student token quotas, cost-analytics, scoped agent API keys.', stack:'TS · React · Node · Azure' },
+        { tag:'AI · RAG', metric:'40+ langs', title:'D2D Chatbot', desc:'Multilingual RAG assistant over 40+ languages on a LangChain pipeline with Gemini + OpenAI fallback and MongoDB backup infra.', stack:'TS · Node · Azure Blob' },
+        { tag:'AI · AGENTS', metric:'3 agents', title:'TripOrchestra', desc:'Multi-agent trip planner: Gemini function-calling routes destination, itinerary & budget agents with code-enforced behavioral rules.', stack:'TS · Express · React · Docker' },
+        { tag:'BACKEND', metric:'Go · JWT', title:'MindShelf', desc:'Personal link-management REST API in Go: tag search, automatic metadata extraction, JWT auth, multi-container Docker deploy.', stack:'Go · REST · Docker' },
+      ],
+      stack: [
+        { domain:'AI / LLM', items:['Multi-provider orchestration','RAG · LangChain','Embeddings','Prompt engineering','MCP · agents','Prompt caching'] },
+        { domain:'Backend', items:['Python · Go · TS','Node · Express · Flask','REST · Socket.IO · SSE','JWT / RBAC auth','Microservices','ETL / CRM'] },
+        { domain:'Data & Infra', items:['MongoDB','Sparse indexing','Azure Blob','Docker','GitHub Actions','Aggregation'] },
+        { domain:'Blockchain', items:['Solidity','Hardhat · Metamask','IPFS · Pinata','ERC-721 · ERC-20','Multi-sig wallets','ETH · Polygon'] },
+        { domain:'Frontend', items:['React','Redux Toolkit','Vite','HTMX','Tailwind CSS'] },
+      ],
+      timeline: [
+        { time:'Jun 2025 — Present', role:'Software Engineer · Backend & GenAI', org:'ThriveTogether', place:'Remote · Bangalore GenAI startup. Production microservices and multi-provider LLM systems.' },
+        { time:'2023 — 2024', role:'Developer Relations & Outreach Partner', org:'SecurrTech', place:'Remote · Web3 security & smart-contract auditing ecosystem. Outreach and technical content.' },
+        { time:'B.Tech, IT', role:'Indus University', org:'Ahmedabad, India', place:'Information Technology.' },
+      ],
+      aiProof: [
+        { big:'3 providers', label:'Anthropic → Gemini → OpenAI fallback chain' },
+        { big:'~95%', label:'cost cut via 24h prompt caching' },
+        { big:'40+', label:'languages in production RAG' },
+        { big:'3 agents', label:'orchestrated with code-enforced rules' },
+      ],
+      aiProjects: [
+        { tag:'FLAGSHIP', title:'Meraki', desc:'Multi-provider LLM fallback (Claude → Gemini → OpenAI) with 24h prompt caching for AI call-coaching reports — ~95% cost cut on cached generations, plus AI lead scoring & multi-channel nurture.', stack:'Python · Flask · MongoDB' },
+        { tag:'ORCHESTRATION', title:'College2Career', desc:'Multi-model orchestration (GPT-4o + Gemini fallback) and a conversational extractor turning unstructured chat into structured professional data. AI mock-interview + résumé toolkit.', stack:'Node · TS · React' },
+        { tag:'MULTI-TENANT', title:'GenAI Lab', desc:'Per-tenant token-quota enforcement, cost-analytics dashboard and scoped agent API keys across Claude 4.5, GPT/DALL·E, Gemini and ElevenLabs.', stack:'TS · React · Node · Azure' },
+        { tag:'RAG', title:'D2D Chatbot', desc:'40+ language event assistant on a LangChain RAG pipeline with Gemini + OpenAI fallback and MongoDB backup/restore infrastructure.', stack:'TS · Node · Azure Blob' },
+        { tag:'AGENTS', title:'TripOrchestra', desc:'LLM orchestration layer routing three specialist agents via Gemini function calling, streaming per-agent activity token-by-token over SSE with a full audit trail.', stack:'TS · Express · Docker' },
+      ],
+      aiPosts: [
+        { tag:'LLM', read:'8 min', title:'Building a multi-provider fallback chain that actually fails over' },
+        { tag:'RAG', read:'11 min', title:'RAG across 40+ languages: what broke and what fixed it' },
+        { tag:'COST', read:'6 min', title:'Cutting LLM spend ~95% with 24h prompt caching' },
+      ],
+
+      backendProof: [
+        { big:'sub-ms', label:'access checks via MongoDB sparse indexes' },
+        { big:'idempotent', label:'single-writer assignment service' },
+        { big:'8-phase', label:'feature-flagged zero-downtime migration' },
+        { big:'real-time', label:'Socket.IO + SSE streaming UX' },
+      ],
+      backendProjects: [
+        { tag:'FLAGSHIP', title:'Meraki', desc:'RBAC with primary/co-assigned/opportunity roles on MongoDB sparse indexes, an idempotent single-writer assignment service, and an 8-phase feature-flagged zero-downtime migration.', stack:'Python · Flask · MongoDB' },
+        { tag:'5 SERVICES', title:'College2Career', desc:'Owned profile, LinkedIn and interview-AI services within a 5-service architecture, with real-time UX over Socket.IO + SSE on React + Redux Toolkit.', stack:'Node · TS · React · MongoDB' },
+        { tag:'MULTI-TENANT', title:'GenAI Lab', desc:'Institutional RBAC hierarchy (super admin → institution → student) with per-tenant token quotas, MongoDB aggregation + indexing to kill cursor timeouts, and scoped API keys with rotation.', stack:'TS · Node · MongoDB · Azure' },
+        { tag:'Go · REST', title:'MindShelf', desc:'A Go REST API for link management: full-text tag search, automatic metadata extraction, JWT auth, and a multi-container Docker deployment.', stack:'Go · REST · JWT · Docker' },
+      ],
+      backendPosts: [
+        { tag:'ARCHITECTURE', read:'9 min', title:'Designing RBAC with sub-ms access checks on MongoDB' },
+        { tag:'DATABASES', read:'7 min', title:'Zero-downtime migrations in 8 feature-flagged phases' },
+        { tag:'BACKEND', read:'6 min', title:'Idempotent single-writer services under concurrency' },
+      ],
+
+      web3Proof: [
+        { big:'ETH + Polygon', label:'deployed across both testnets' },
+        { big:'IPFS', label:'NFT metadata pinned via Pinata' },
+        { big:'multi-sig', label:'wallet contract with threshold approvals' },
+        { big:'security', label:'auditing-ecosystem DevRel background' },
+      ],
+      web3Projects: [
+        { tag:'CONTRACTS', title:'Ethereum Smart Contracts', desc:'A multi-signature wallet, an ERC-721 NFT with IPFS metadata via Pinata, and an ERC-20 token — built with Hardhat + Metamask and deployed across Ethereum and Polygon testnets.', stack:'Solidity · Hardhat · Pinata' },
+        { tag:'CREDIBILITY', title:'SecurrTech — DevRel', desc:'Developer-relations & outreach partner inside a Web3 security and smart-contract auditing ecosystem — close exposure to how on-chain code gets reviewed and hardened.', stack:'Web3 · Security · DevRel' },
+      ],
+      web3Posts: [
+        { tag:'SOLIDITY', read:'10 min', title:'Building a multi-sig wallet in Solidity, step by step' },
+        { tag:'WEB3', read:'7 min', title:'ERC-721 with IPFS metadata via Pinata' },
+        { tag:'SECURITY', read:'8 min', title:'A security mindset for shipping smart contracts' },
+      ],
+
+      blogCats: ['All','AI · LLM','Backend','Databases','Web3'].map((name, i) => ({
+        name,
+        style: (i===0
+          ? "padding:8px 14px;border-radius:9px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;font-family:'Inter Tight';cursor:pointer"
+          : "padding:8px 14px;border-radius:9px;background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:500;font-family:'Inter Tight';cursor:pointer")
+      })),
+      blogPosts: [
+        { tag:'RAG', read:'11 min', title:'RAG across 40+ languages: what broke and what fixed it', excerpt:'A LangChain pipeline with Gemini + OpenAI fallback, and the multilingual edge cases nobody warns you about.', date:'Jun 2026' },
+        { tag:'ARCHITECTURE', read:'9 min', title:'Designing RBAC with sub-ms access checks on MongoDB', excerpt:'Sparse indexes, role hierarchies, and keeping authorization off the hot path.', date:'May 2026' },
+        { tag:'DATABASES', read:'7 min', title:'Zero-downtime migrations in 8 feature-flagged phases', excerpt:'How to move a live data model without the sales floor ever noticing.', date:'May 2026' },
+        { tag:'SOLIDITY', read:'10 min', title:'Building a multi-sig wallet in Solidity, step by step', excerpt:'Threshold approvals, replay protection, and deploying to Polygon testnet.', date:'Apr 2026' },
+        { tag:'COST', read:'6 min', title:'Cutting LLM spend ~95% with 24h prompt caching', excerpt:'When your system prompt is huge and stable, caching is the cheapest win on the board.', date:'Apr 2026' },
+        { tag:'AGENTS', read:'9 min', title:'Orchestrating three agents with Gemini function calling', excerpt:'Routing, chaining, and enforcing behavioral rules in code instead of in the prompt.', date:'Mar 2026' },
+      ],
+      relatedPosts: [
+        { tag:'RAG', read:'11 min', title:'RAG across 40+ languages: what broke and what fixed it' },
+        { tag:'COST', read:'6 min', title:'Cutting LLM spend ~95% with 24h prompt caching' },
+      ],
+
+      adminNav: ['Projects','Blog posts','Tags & categories','Featured sections','Page hero content','Social links','SEO metadata'].map((label, i) => ({
+        label,
+        style: (i===0
+          ? "padding:9px 12px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600;font-family:'Inter Tight';cursor:pointer"
+          : "padding:9px 12px;border-radius:9px;color:var(--muted);font-size:13px;font-weight:500;font-family:'Inter Tight';cursor:pointer")
+      })),
+      adminRows: [
+        { title:'Meraki — AI Sales Intelligence', domain:'AI · Backend', status:'Published', updated:'2h ago' },
+        { title:'College2Career', domain:'AI · Backend', status:'Published', updated:'1d ago' },
+        { title:'GenAI Lab', domain:'AI · Backend', status:'Published', updated:'3d ago' },
+        { title:'TripOrchestra', domain:'AI', status:'Draft', updated:'4d ago' },
+        { title:'D2D Chatbot', domain:'AI', status:'Published', updated:'1w ago' },
+        { title:'Ethereum Smart Contracts', domain:'Web3', status:'Published', updated:'2w ago' },
+        { title:'MindShelf', domain:'Backend', status:'Scheduled', updated:'Jun 28', },
+      ].map(r => ({ ...r, statusStyle: this.statusStyle(r.status) })),
+      adminBlocks: [
+        { icon:'¶', name:'Rich text' },
+        { icon:'▦', name:'Metric band' },
+        { icon:'❮❯', name:'Code block' },
+        { icon:'▭', name:'Image / gallery' },
+        { icon:'◈', name:'Architecture diagram' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
