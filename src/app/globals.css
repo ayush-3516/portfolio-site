@@ -11,6 +11,8 @@
   --faint: #9398a3;
   --accent: #4f46e5;
   --accent-soft: rgba(79, 70, 229, 0.09);
+  --color-online: #22c55e;
+  --color-logo-end: #8b5cf6;
 }
 
 .dark {
@@ -24,6 +26,8 @@
   --faint: #666c7c;
   --accent: #6366f1;
   --accent-soft: rgba(99, 102, 241, 0.12);
+  --color-online: #22c55e;
+  --color-logo-end: #8b5cf6;
 }
 
 [data-domain="ai"] {

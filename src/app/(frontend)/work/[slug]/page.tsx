@@ -37,7 +37,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const payload = await getCachedPayload()
   const result = await payload
-    .find({ collection: 'projects', where: { slug: { equals: slug } }, limit: 1 })
+    .find({ collection: 'projects', where: { slug: { equals: slug } }, limit: 1, depth: 1 })
     .catch(() => null)
   const project = result?.docs[0]
   if (!project) notFound()
@@ -50,7 +50,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--accent)', padding: '4px 9px', borderRadius: 7, background: 'var(--accent-soft)' }}>
-            {project.tag}
+            {typeof project.tag === 'object' && project.tag !== null ? (project.tag as any).name : String(project.tag ?? '')}
           </span>
           {project.metric && (
             <span style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 13, color: 'var(--muted)' }}>{project.metric}</span>

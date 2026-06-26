@@ -28,7 +28,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const defaultToc: TocItem[] = [
   { id: 'intro', label: 'Introduction' },
-  { id: 'body', label: 'Main content' },
 ]
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {

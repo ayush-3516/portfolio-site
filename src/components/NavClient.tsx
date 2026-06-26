@@ -70,7 +70,7 @@ export function NavClient({
             width: 30,
             height: 30,
             borderRadius: 9,
-            background: 'linear-gradient(140deg, var(--accent), #8b5cf6)',
+            background: 'linear-gradient(140deg, var(--accent), var(--color-logo-end))',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

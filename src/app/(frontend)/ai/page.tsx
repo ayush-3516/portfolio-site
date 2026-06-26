@@ -31,7 +31,7 @@ export default async function AIPage() {
     .catch(() => [])
 
   return (
-    <div>
+    <div data-domain="ai">
       <DomainAccent domain="ai" />
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '90px 36px 56px', textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 99, border: '1px solid rgba(139,92,246,.35)', background: 'rgba(139,92,246,.1)', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#8b5cf6', marginBottom: 26 }}>
@@ -44,7 +44,7 @@ export default async function AIPage() {
           Multi-provider fallback chains, RAG over 40+ languages, multi-agent systems, and prompt caching that cut generation cost by ~95%.
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="mailto:ayushchaudhari3516@gmail.com" style={{ padding: '13px 24px', borderRadius: 11, background: '#8b5cf6', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif", textDecoration: 'none', boxShadow: '0 10px 30px -10px #8b5cf6' }}>See AI work</a>
+          <a href="mailto:ayushchaudhari3516@gmail.com" style={{ padding: '13px 24px', borderRadius: 11, background: 'var(--accent)', color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif", textDecoration: 'none', boxShadow: '0 10px 30px -10px var(--accent)' }}>See AI work</a>
           <a href="mailto:ayushchaudhari3516@gmail.com" style={{ padding: '13px 24px', borderRadius: 11, background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--ink)', fontSize: 14, fontWeight: 600, fontFamily: "'Inter Tight', sans-serif", textDecoration: 'none' }}>Contact</a>
         </div>
       </section>

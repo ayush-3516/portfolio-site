@@ -36,7 +36,7 @@ export default async function HomePage() {
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '96px 36px 60px', display: 'grid', gridTemplateColumns: '1.05fr .95fr', gap: 56, alignItems: 'center' }}>
         <div style={{ animation: 'rise .6s ease both' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 13px', borderRadius: 99, border: '1px solid var(--border)', background: 'var(--surface)', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 26 }}>
-            <span style={{ width: 7, height: 7, borderRadius: 99, background: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
+            <span style={{ width: 7, height: 7, borderRadius: 99, background: 'var(--color-online)', boxShadow: '0 0 8px var(--color-online)' }} />
             {hero?.statusBadgeText ?? 'Production AI, engineered properly.'}
           </div>
           <h1 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 54, lineHeight: 1.04, letterSpacing: '-0.03em', color: 'var(--ink)', marginBottom: 22 }}>

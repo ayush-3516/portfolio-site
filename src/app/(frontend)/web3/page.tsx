@@ -31,7 +31,7 @@ export default async function Web3Page() {
     .catch(() => [])
 
   return (
-    <div>
+    <div data-domain="web3">
       <DomainAccent domain="web3" />
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '90px 36px 56px', textAlign: 'center' }}>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 99, border: '1px solid rgba(245,185,66,.35)', background: 'rgba(245,185,66,.1)', fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#f5b942', marginBottom: 26 }}>
