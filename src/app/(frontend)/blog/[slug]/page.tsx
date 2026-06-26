@@ -65,7 +65,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     : ''
 
   return (
-    <div style={{ maxWidth: 1180, margin: '0 auto', padding: '60px 36px', display: 'grid', gridTemplateColumns: '1fr 220px', gap: 56, alignItems: 'start' }}>
+    <div className="section-wide article-grid" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <article>
         <Link href="/blog" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 28, display: 'inline-block', textDecoration: 'none' }}>
           ← Blog

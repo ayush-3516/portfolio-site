@@ -43,7 +43,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   if (!project) notFound()
 
   return (
-    <div style={{ maxWidth: 1180, margin: '0 auto', padding: '60px 36px', display: 'grid', gridTemplateColumns: '1fr 220px', gap: 56, alignItems: 'start' }}>
+    <div className="section-wide article-grid" style={{ paddingTop: 60, paddingBottom: 60 }}>
       <article>
         <Link href="/" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 28, display: 'inline-block', textDecoration: 'none' }}>
           ← Work

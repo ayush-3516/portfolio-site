@@ -51,7 +51,7 @@ export default async function AIPage() {
 
       {/* Proof band */}
       <section style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--surface)' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', padding: '36px 36px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 32 }}>
+        <div className="section-wide proof-grid" style={{ paddingTop: 36, paddingBottom: 36 }}>
           {proof.map((p) => (
             <div key={p.big}>
               <div style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 32, color: 'var(--accent)', letterSpacing: '-0.02em' }}>{p.big}</div>
@@ -62,17 +62,17 @@ export default async function AIPage() {
       </section>
 
       {/* Projects */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '60px 36px 40px' }}>
+      <section className="section-wide" style={{ paddingTop: 60, paddingBottom: 40 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 10 }}>AI PROJECTS</div>
         <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 32, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 32 }}>LLM systems I've shipped</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+        <div className="projects-grid">
           {projects.map((p) => <ProjectCard key={p.id} project={p} />)}
         </div>
       </section>
 
       {/* Recent posts */}
       {recentPosts.length > 0 && (
-        <section style={{ maxWidth: 1180, margin: '0 auto', padding: '20px 36px 60px' }}>
+        <section className="section-wide" style={{ paddingTop: 20, paddingBottom: 60 }}>
           <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 24, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: 20 }}>Recent writing</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {recentPosts.map((post) => (

@@ -17,7 +17,7 @@ export default async function BlogPage() {
     .catch(() => [])
 
   return (
-    <div style={{ maxWidth: 1180, margin: '0 auto', padding: '80px 36px 60px' }}>
+    <div className="section-wide" style={{ paddingTop: 80, paddingBottom: 60 }}>
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: 'var(--accent)', marginBottom: 10 }}>BLOG</div>
       <h1 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 48, color: 'var(--ink)', letterSpacing: '-0.03em', marginBottom: 12 }}>
         Writing
