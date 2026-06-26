@@ -7,14 +7,10 @@ import { TocSidebar } from '@/components/TocSidebar'
 import type { TocItem } from '@/components/TocSidebar'
 
 export const revalidate = 3600
+export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const payload = await getCachedPayload()
-  const posts = await payload
-    .find({ collection: 'blog-posts', where: { status: { equals: 'published' } }, limit: 200 })
-    .then((r) => r.docs)
-    .catch(() => [])
-  return posts.map((p) => ({ slug: p.slug }))
+  return []
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
