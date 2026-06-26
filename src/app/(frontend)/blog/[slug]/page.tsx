@@ -26,9 +26,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: `${post.title} — Ayush Chaudhari`, description: post.excerpt ?? '' }
 }
 
-const defaultToc: TocItem[] = [
-  { id: 'intro', label: 'Introduction' },
-]
+function extractToc(body: unknown): TocItem[] {
+  try {
+    const root = (body as any)?.root?.children ?? []
+    const items: TocItem[] = []
+    for (const node of root) {
+      if (node.type === 'heading' && (node.tag === 'h2' || node.tag === 'h3')) {
+        const text = node.children?.map((c: any) => c.text ?? '').join('') ?? ''
+        if (text) {
+          const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+          items.push({ id, label: text })
+        }
+      }
+    }
+    return items.length > 0 ? items : [{ id: 'intro', label: 'Introduction' }]
+  } catch {
+    return [{ id: 'intro', label: 'Introduction' }]
+  }
+}
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -43,6 +58,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     ? post.relatedPosts.filter((p): p is NonNullable<typeof p> => typeof p === 'object' && p !== null)
     : []
 
+  const toc = extractToc(post.body)
+  const tagName = typeof post.tag === 'object' && post.tag !== null ? (post.tag as any).name : String(post.tag ?? '')
+  const publishedDate = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    : ''
+
   return (
     <div style={{ maxWidth: 1180, margin: '0 auto', padding: '60px 36px', display: 'grid', gridTemplateColumns: '1fr 220px', gap: 56, alignItems: 'start' }}>
       <article>
@@ -50,21 +71,30 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ← Blog
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--accent)', padding: '4px 9px', borderRadius: 7, background: 'var(--accent-soft)' }}>
-            {typeof post.tag === 'object' && post.tag !== null ? (post.tag as any).name : String(post.tag ?? '')}
-          </span>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--faint)' }}>{post.readTime}</span>
+          {tagName && (
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--accent)', padding: '4px 9px', borderRadius: 7, background: 'var(--accent-soft)' }}>
+              {tagName}
+            </span>
+          )}
+          {post.readTime && (
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--faint)' }}>{post.readTime}</span>
+          )}
+          {publishedDate && (
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--faint)', marginLeft: 'auto' }}>{publishedDate}</span>
+          )}
         </div>
         <h1 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 800, fontSize: 44, lineHeight: 1.1, letterSpacing: '-0.03em', color: 'var(--ink)', marginBottom: 24 }}>
           {post.title}
         </h1>
-        <p style={{ fontSize: 18, lineHeight: 1.65, color: 'var(--muted)', marginBottom: 40, maxWidth: 680 }}>{post.excerpt}</p>
-        <div id="intro" />
-        {post.body && <RichText data={post.body as any} />}
+        <p style={{ fontSize: 18, lineHeight: 1.65, color: 'var(--muted)', marginBottom: 40, maxWidth: 680, borderBottom: '1px solid var(--border)', paddingBottom: 40 }}>
+          {post.excerpt}
+        </p>
+
+        {post.body && <RichText data={post.body as Record<string, unknown>} />}
 
         {relatedPosts.length > 0 && (
           <div style={{ marginTop: 60, paddingTop: 40, borderTop: '1px solid var(--border)' }}>
-            <h3 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--ink)', marginBottom: 16 }}>Related</h3>
+            <h3 style={{ fontFamily: "'Inter Tight', sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--ink)', marginBottom: 16 }}>Related reading</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {relatedPosts.map((rp: any) => (
                 <Link key={rp.id} href={`/blog/${rp.slug}`} style={{ padding: '14px 18px', borderRadius: 12, background: 'var(--surface)', border: '1px solid var(--border)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -82,7 +112,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <aside style={{ position: 'sticky', top: 90 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--faint)', marginBottom: 12, letterSpacing: '0.06em' }}>ON THIS PAGE</div>
-        <TocSidebar items={defaultToc} />
+        <TocSidebar items={toc} />
       </aside>
     </div>
   )
